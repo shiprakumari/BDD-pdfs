@@ -1,0 +1,94 @@
+@When("^user enters incorrect mobile number format and clicks the button$")
+	public void user_enters_incorrect_mobileNo_format_and_clicks_the_button(DataTable nos) throws Exception {
+		hotelPageFact.setFname("Aravind");
+		Thread.sleep(1000);
+		hotelPageFact.setLname("Rajesekaran");
+		Thread.sleep(1000);
+		hotelPageFact.setEmail("ashok.raj@gmail.com");
+		Thread.sleep(1000);
+//https://stackoverflow.com/questions/44306336/is-it-possible-to-get-an-array-as-a-cell-in-cucumber-parameters-table
+//https://stackoverflow.com/questions/46130455/how-to-convert-a-datatable-in-cucumber-to-a-list-of-objects
+
+		List<String> objList = nos.asList(String.class);
+		String data=null;
+		for (String dataTemp:objList) {
+			data=dataTemp;
+			hotelPageFact.getMobile().clear();//?
+			hotelPageFact.setMobile(dataTemp);
+			Thread.sleep(1000);
+			hotelPageFact.setButton();
+			
+			if (Pattern.matches("^[7-9]{1}[0-9]{9}$",data)) {
+				System.out.println("Matching ");
+			} else {
+				String alertMessage = driver.switchTo().alert().getText();
+				Thread.sleep(1000);
+				driver.switchTo().alert().accept();
+				System.out.println("not matched "+alertMessage);
+				
+			}
+		}
+		hotelPageFact.setButton();
+	}
+
+	@When("^if user is not selecting city$")
+	public void user_doesnot_select_city() throws Exception {
+		hotelPageFact.setFname("Aravind");
+		Thread.sleep(1000);
+		hotelPageFact.setLname("Rajesekaran");
+		Thread.sleep(1000);
+		hotelPageFact.setEmail("ashok.raj@gmail.com");
+		Thread.sleep(1000);
+		hotelPageFact.setMobile("9894465122");
+		Thread.sleep(1000);
+		hotelPageFact.setCity("Select City");
+		Thread.sleep(1000);
+		hotelPageFact.setButton();
+	}
+
+	@When("^if user is not selecting state$")
+	public void if_user_is_not_selecting_state() throws Exception {
+		hotelPageFact.setFname("Aravind");
+		Thread.sleep(1000);
+		hotelPageFact.setLname("Rajesekaran");
+		Thread.sleep(1000);
+		hotelPageFact.setEmail("ashok.raj@gmail.com");
+		Thread.sleep(1000);
+		hotelPageFact.setCity("Chennai");
+		Thread.sleep(1000);
+		hotelPageFact.setState("Select State");
+		Thread.sleep(1000);
+		hotelPageFact.setButton();
+	}
+
+	@When("^user enters (\\d+)$")
+	public void user_enters(int noOfPersons) throws Exception {
+		hotelPageFact.setFname("Aravind");
+		Thread.sleep(1000);
+		hotelPageFact.setLname("Rajesekaran");
+		Thread.sleep(1000);
+		hotelPageFact.setEmail("ashok.raj@gmail.com");
+		Thread.sleep(1000);
+		hotelPageFact.setCity("Chennai");
+		Thread.sleep(1000);
+		hotelPageFact.setState("Tamilnadu");
+		Thread.sleep(1000);
+		hotelPageFact.setPersons(noOfPersons);
+		Thread.sleep(2000);
+	}
+
+	@Then("^for (\\d+) allocate (\\d+)$")
+	public void for_allocate(int guest, int rooms) throws Throwable {
+		
+		if (guest <= 3) {
+			System.out.println("no of Rooms:" + rooms);
+			assertEquals(1, rooms);
+		} else if (guest <= 6) {
+			System.out.println("no of Rooms:" + rooms);
+			assertEquals(2, rooms);
+		} else if (1 <= 9) {
+			System.out.println("no of Rooms:" + rooms);
+			assertEquals(3, rooms);
+		}
+
+	}

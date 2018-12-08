@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<table align="center" background-color="cyan">
+		<center>
+			<h1>Account Form</h1>
+		</center>
+		<form name="frm" action="">
+			<table border="2" align="center" cellpadding="10">
+				<tr>
+					<td>Enter Name :</td>
+					<td><input id="txtN" type="text" name="fname" size="10"
+						pattern="[A-Z][a-z]{3,10}"
+						title="Name should contain only alphabets, First letter capital"
+						required /><br /></td>
+				</tr>
+				<tr>
+					<td>Enter Mobile Number :</td>
+					<td><input id="txtMn"type="text" name="phno" size="10"
+						pattern="[6-9][0-9]{9}"
+						title="Enter 10 digits number startin with 6-9" required /><br /></td>
+				</tr>
+				<tr>
+					<td>Enter your EmailId :</td>
+					<td><input id="txtEi"type="email" name="emailid" title="Enter ur email"
+						required /><br /></td>
+				</tr>
+				<tr>
+					<td>Enter your Gender :</td>
+					<td><input id ="mG"type="radio" value="Male" name="gender" checked>Male
+						<input id="fG" type="radio" value="Female" name="gender">Female <br /></td>
+				</tr>
+				<tr>
+					<td>Enter your address :</td>
+					<td><textarea rows="6" cols="30" required></textarea><br /></td>
+				</tr>
+				<tr>
+					<td><input id="btn" type="submit" value="Submit" /></td>
+				</tr>
+		</form>
+	</table>
+
+
+</body>
+</html>
